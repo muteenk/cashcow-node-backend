@@ -54,37 +54,37 @@ export const getUserFamilyGroups = catchAsyncErrors(async (req: any, res: Respon
 })
 
 
-export const addMemberToFamily = catchAsyncErrors(async (req: any, res: Response, next: NextFunction) => {
-    const { id } = req.params;
-    let { memberId, role } = req.body;
-
-    if (!role) role = "member"
-
-    if (memberId === req.user.id) {
-        return next(new ErrorHandler("User is already an admin", 400));
-    }
-
-    const family = await Family.findById(id);
-
-    if (!family) {
-        return next(new ErrorHandler("Family not found", 404));
-    }
-
-    if (family.admin.includes(memberId)) {
-        return next(new ErrorHandler("User is already an admin", 400));
-    }
-
-    if (family.members.includes(memberId)) {
-        return next(new ErrorHandler("Member already exists", 400));
-    }
-
-    family.members.push(memberId);
-
-    await family.save();
-
-    res.status(200).json({
-        success: true,
-        family,
-        memberCount: family.members.length
-    })
-})
+//export const addMemberToFamily = catchAsyncErrors(async (req: any, res: Response, next: NextFunction) => {
+//    const { id } = req.params;
+//    let { memberId, role } = req.body;
+//
+//    if (!role) role = "member"
+//
+//    if (memberId === req.user.id) {
+//        return next(new ErrorHandler("User is already an admin", 400));
+//    }
+//
+//    const family = await Family.findById(id);
+//
+//    if (!family) {
+//        return next(new ErrorHandler("Family not found", 404));
+//    }
+//
+//    if (family.admin.includes(memberId)) {
+//        return next(new ErrorHandler("User is already an admin", 400));
+//    }
+//
+//    if (family.members.includes(memberId)) {
+//        return next(new ErrorHandler("Member already exists", 400));
+//    }
+//
+//    family.members.push(memberId);
+//
+//    await family.save();
+//
+//    res.status(200).json({
+//        success: true,
+//        family,
+//        memberCount: family.members.length
+//    })
+//})

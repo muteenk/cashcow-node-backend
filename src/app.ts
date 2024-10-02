@@ -8,7 +8,7 @@ import errorMiddleware from './middleware/error.js';
 import baseRouter from './routes/baseRoutes.js';
 import userAuthRouter from './routes/userAuthRoutes.js';
 import transactionRouter from './routes/transactionRoute.js';
-import familyGroupRouter from './routes/familyGroupRoutes.js';
+//import familyGroupRouter from './routes/familyGroupRoutes.js';
 
 
 
@@ -34,7 +34,7 @@ app.use(errorMiddleware);
 app.use('/api/v1', baseRouter);
 app.use('/api/v1/users', userAuthRouter);
 app.use('/api/v1/transactions', transactionRouter);
-app.use('/api/v1/fam', familyGroupRouter);
+//app.use('/api/v1/fam', familyGroupRouter);
 
 
 
